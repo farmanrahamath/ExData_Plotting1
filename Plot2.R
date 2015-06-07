@@ -1,0 +1,7 @@
+hp=read.table("household_power_consumption.txt", sep=";", header=TRUE, na.strings="?")
+hp$date=as.Date(hp$Date,"%d/%m/%Y")
+hp$time=strptime(hp$Time, "%H:%M:%S")
+hpc=subset(hp, hp$date>="2007-02-01")
+a=paste(hp$date, hp$Time)
+t=as.POSIXct(a)
+plot(t, hp$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)", main="")
